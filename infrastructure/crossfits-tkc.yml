@@ -1,0 +1,20 @@
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TanzuKubernetesCluster
+metadata:
+  name: crossfits-tkc
+spec:
+  distribution:
+    version: v1.21
+  topology:
+    controlPlane:
+      class: best-effort-medium
+      count: 1
+      storageClass: one-node-vsan-policy
+    workers:
+      class: best-effort-medium
+      count: 3
+      storageClass: one-node-vsan-policy
+  settings:
+    storage:
+      classes: ["one-node-vsan-policy"]              #Named PVC storage classes
+      defaultClass: one-node-vsan-policy                     #Default PVC storage class

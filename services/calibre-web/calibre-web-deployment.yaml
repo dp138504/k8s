@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: calibre-web
+  name: calibre-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: calibre-web
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: calibre-web
+    spec:
+      containers:
+        - env:
+            - name: DOCKER_MODS
+              value: linuxserver/calibre-web:calibre
+            - name: OAUTHLIB_RELAX_TOKEN_SCOPE
+              value: "1"
+            - name: PGID
+              value: "1002"
+            - name: PUID
+              value: "1003"
+            - name: TZ
+              value: America/New_York
+          image: lscr.io/linuxserver/calibre-web:latest
+          name: calibre-web
+          ports:
+            - containerPort: 8083
+          resources: {}
+          volumeMounts:
+            - name: calibre-web-config-pvc
+              mountPath: /config
+            - name: calibre-web-books-nfs
+              mountPath: /books
+            - name: calibre-web-patch-cfgmap
+              mountPath: /config/custom-cont-init.d/
+      restartPolicy: Always
+      volumes:
+        - name: calibre-web-config-pvc
+          hostPath:
+            type: DirectoryOrCreate
+            path: /config
+        - name: calibre-web-books-nfs
+          nfs: 
+            server: 172.16.1.2
+            path: /export/share/Books
+        - name: calibre-web-patch-cfgmap
+          configMap:
+            name: calibre-web-patch-cfgmap
+            defaultMode: 0777
+status: {}

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: calibre-web-patch-cfgmap
+data:
+  patch.sh: |
+    #!/bin/bash
+    echo "**** patching calibre-web - removing session protection ****"
+    sed -i "/lm.session_protection = 'strong'/d" /app/calibre-web/cps/__init__.py
+    echo "**** patching calibre-web - adjusting default logging level ****"
+    sed -i "s/DEFAULT_LOG_LEVEL   = logging.INFO/DEFAULT_LOG_LEVEL   = logging.DEBUG/g" /app/calibre-web/cps/logger.py
