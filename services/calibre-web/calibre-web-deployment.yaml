@@ -44,8 +44,8 @@ spec:
           volumeMounts:
             - name: calibre-web-config-pvc
               mountPath: /config
-            - name: calibre-web-books-nfs
-              mountPath: /books
+            #- name: calibre-web-books-pvc
+            #  mountPath: /books
             - name: calibre-web-patch-cfgmap
               mountPath: /config/custom-cont-init.d/
       restartPolicy: Always
@@ -54,10 +54,10 @@ spec:
           hostPath:
             type: DirectoryOrCreate
             path: /config
-        - name: calibre-web-books-nfs
-          nfs: 
-            server: 172.16.1.2
-            path: /export/share/Books
+        - name: calibre-web-books-pvc
+          hostPath:
+            type: DirectoryOrCreate
+            path: /books
         - name: calibre-web-patch-cfgmap
           configMap:
             name: calibre-web-patch-cfgmap
