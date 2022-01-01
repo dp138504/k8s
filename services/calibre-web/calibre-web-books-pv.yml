@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: calibre-web-books-pv
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: share.crossfits.dpitts.us
+    path: "/export/Books"
+#  mountOptions:
+#    - nfsvers=4.2
+  claimRef:
+    namespace: calibre-web
+    name: calibre-web-books-pvc
+  persistentVolumeReclaimPolicy: Retain

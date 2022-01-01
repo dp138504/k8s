@@ -1,0 +1,1 @@
+kubectl describe secret kubernetes-dashboard-token -n kubernetes-dashboard

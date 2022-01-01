@@ -6,7 +6,8 @@ metadata:
     io.kompose.service: calibre-web-books-pvc
   name: calibre-web-books-pvc
 spec:
-  storageClassName: crossfits-nfs
+  storageClassName: ""
+  #volumeName: crossfits-web-books-pvc
   accessModes:
     - ReadWriteMany
   resources:
