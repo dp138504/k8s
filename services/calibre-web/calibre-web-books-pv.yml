@@ -11,8 +11,9 @@ spec:
   nfs:
     server: share.crossfits.dpitts.us
     path: "/export/Books"
-#  mountOptions:
-#    - nfsvers=4.2
+  mountOptions:
+    - nfsvers=3
+    - nolock
   claimRef:
     namespace: calibre-web
     name: calibre-web-books-pvc
