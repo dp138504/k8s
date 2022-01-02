@@ -9,3 +9,6 @@ data:
     sed -i "/lm.session_protection = 'strong'/d" /app/calibre-web/cps/__init__.py
     echo "**** patching calibre-web - adjusting default logging level ****"
     sed -i "s/DEFAULT_LOG_LEVEL   = logging.INFO/DEFAULT_LOG_LEVEL   = logging.DEBUG/g" /app/calibre-web/cps/logger.py
+    echo "**** patching calibre-web - removing check_user_session lines ****"
+    sed -i "s/if not ub.check_user_session(current_user.id, flask_session.get('_id')) and 'opds' not in request.path:/#if not ub.check_user_session(current_user.id, flask_session.get('_id')) and 'opds' not in request.path:/g" /app/calibre-web/cps/admin.py
+    sed -i "s/logout_user()/#logout_user()/g" /app/calibre-web/cps/admin.py
