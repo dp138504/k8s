@@ -46,6 +46,7 @@ spec:
               mountPath: /config
             - name: calibre-web-books-pvc
               mountPath: /books
+              subPath: Books
             - name: calibre-web-patch-cfgmap
               mountPath: /config/custom-cont-init.d/
       restartPolicy: Always
@@ -53,9 +54,6 @@ spec:
         - name: calibre-web-config-pvc
           persistentVolumeClaim:
             claimName: calibre-web-config-pvc
-          #hostPath:
-          #  type: DirectoryOrCreate
-          #  path: /config
         - name: calibre-web-books-pvc
           persistentVolumeClaim:
             claimName: calibre-web-books-pvc

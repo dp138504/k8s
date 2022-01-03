@@ -9,10 +9,10 @@ imagePullSecrets: []
 
 nfs:
   server: share.crossfits.dpitts.us
-  path: /export/share
+  path: /share
   mountOptions:
-   - nfsvers=3
-   - nolock
+   - nfsvers=4.2
+   # - nolock
   volumeName: crossfits-nfs-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain

@@ -10,10 +10,10 @@ spec:
     - ReadWriteMany
   nfs:
     server: share.crossfits.dpitts.us
-    path: "/export/Books"
+    path: "/share"
   mountOptions:
-    - nfsvers=3
-    - nolock
+    - nfsvers=4.2
+    # - nolock
   claimRef:
     namespace: calibre-web
     name: calibre-web-books-pvc
