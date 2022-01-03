@@ -5,10 +5,21 @@ metadata:
   labels:
     app: calibre-web
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: books.k8s.crossfits.dpitts.us
+    #external-dns.alpha.kubernetes.io/hostname: books.k8s.crossfits.dpitts.us
 spec:
-  defaultBackend:
-    service:
-      name: calibre-web
-      port:
-        number: 80
+  rules:
+    - host: "books.k8s.crossfits.dpitts.us"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: calibre-web
+                port: 
+                  number: 80
+#  defaultBackend:
+#    service:
+#      name: calibre-web
+#      port:
+#        number: 80
