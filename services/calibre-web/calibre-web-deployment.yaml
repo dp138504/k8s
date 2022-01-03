@@ -51,9 +51,11 @@ spec:
       restartPolicy: Always
       volumes:
         - name: calibre-web-config-pvc
-          hostPath:
-            type: DirectoryOrCreate
-            path: /config
+          persistentVolumeClaim:
+            claimName: calibre-web-config-pvc
+          #hostPath:
+          #  type: DirectoryOrCreate
+          #  path: /config
         - name: calibre-web-books-pvc
           persistentVolumeClaim:
             claimName: calibre-web-books-pvc

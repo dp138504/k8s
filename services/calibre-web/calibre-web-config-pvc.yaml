@@ -6,9 +6,9 @@ metadata:
     io.kompose.service: calibre-web-config-pvc
   name: calibre-web-config-pvc
 spec:
-  storageClassName: one-node-vsan-policy
+  #storageClassName: one-node-vsan-policy
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Mi

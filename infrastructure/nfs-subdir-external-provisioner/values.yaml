@@ -11,6 +11,8 @@ nfs:
   server: share.crossfits.dpitts.us
   path: /export/share
   mountOptions:
+   - nfsvers=3
+   - nolock
   volumeName: crossfits-nfs-root
   # Reclaim policy for the main nfs volume
   reclaimPolicy: Retain
