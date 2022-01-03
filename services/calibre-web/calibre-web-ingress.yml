@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calibre-web-ingress
+  labels:
+    app: calibre-web
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: books.k8s.crossfits.dpitts.us
+spec:
+  defaultBackend:
+    service:
+      name: calibre-web
+      port:
+        number: 80
