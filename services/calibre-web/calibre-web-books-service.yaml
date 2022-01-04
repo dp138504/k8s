@@ -7,15 +7,15 @@ metadata:
    # external-dns.alpha.kubernetes.io/hostname: books.k8s.crossfits.dpitts.us
   creationTimestamp: null
   labels:
-    io.kompose.service: calibre-web
-  name: calibre-web
+    io.kompose.service: calibre-web-books
+  name: calibre-web-books
 spec:
   ports:
     - name: "80"
       port: 80
       targetPort: 8083
   selector:
-    io.kompose.service: calibre-web
+    io.kompose.service: calibre-web-books
   type: ClusterIP
 status:
   loadBalancer: {}

@@ -3,10 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: calibre-web-config-pvc
-  name: calibre-web-config-pvc
+    io.kompose.service: calibre-web-books-config-pvc
+  name: calibre-web-books-config-pvc
 spec:
-  #storageClassName: one-node-vsan-policy
   accessModes:
     - ReadWriteMany
   resources:

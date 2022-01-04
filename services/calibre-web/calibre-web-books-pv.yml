@@ -13,7 +13,6 @@ spec:
     path: "/share"
   mountOptions:
     - nfsvers=4.2
-    # - nolock
   claimRef:
     namespace: calibre-web
     name: calibre-web-books-pvc

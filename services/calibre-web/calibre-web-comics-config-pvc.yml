@@ -3,13 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: calibre-web-books-pvc
-  name: calibre-web-books-pvc
+    io.kompose.service: calibre-web-comics-config-pvc
+  name: calibre-web-comics-config-pvc
 spec:
-  storageClassName: ""
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 5Gi
+      storage: 100Mi
 status: {}
