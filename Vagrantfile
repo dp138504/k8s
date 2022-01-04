@@ -59,6 +59,8 @@ Vagrant.configure("2") do |config|
      # Setup SSH config file for GitHub push
      echo "*** Setup SSH config file for GitHub push ***"
      cp /vagrant/ssh_config /root/.ssh/config
+     echo "DONE: Don't forget to run 'git config --global user.email "you@example.com"'"
+     echo "DONE: Don't forget to run 'git config --global user.name "Your Name"'"
      echo "DONE: Make sure to insert your YubiKey and run 'sudo -iH; cd ~/.ssh; ssh-keygen -K'"
    SHELL
 end
