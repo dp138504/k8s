@@ -4,7 +4,6 @@ metadata:
   annotations:
     kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert
     kompose.version: 1.26.0 (40646f47)
-   # external-dns.alpha.kubernetes.io/hostname: books.k8s.crossfits.dpitts.us
   creationTimestamp: null
   labels:
     io.kompose.service: calibre-web-books
