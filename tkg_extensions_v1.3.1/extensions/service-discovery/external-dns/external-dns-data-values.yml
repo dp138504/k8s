@@ -12,7 +12,7 @@ externalDns:
     - --rfc2136-host=172.16.1.1 #! IP of RFC2136 compatible dns server
     - --rfc2136-port=53
     - --rfc2136-zone=k8s.crossfits.dpitts.us #! zone where services are deployed
-    - --rfc2136-tsig-secret=***REMOVED*** #! TSIG key authorized to update the DNS server
+    - --rfc2136-tsig-secret=CHANGE_ME #! TSIG key authorized to update the DNS server
     - --rfc2136-tsig-secret-alg=hmac-sha256
     - --rfc2136-tsig-keyname=crossfits-tkc-dns
     - --rfc2136-tsig-axfr
