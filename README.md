@@ -9,3 +9,7 @@ This repo contains my personal Kubernetes projects hosted on my VMware Tanzu clu
 ## TODO
  - home-assistant: from [linuxserver/docker-homeassistant](https://github.com/linuxserver/docker-homeassistant)
  - bitwarden
+
+### Notes to self:
+ - Use [this](https://rtyley.github.io/bfg-repo-cleaner/) to ensure secrets are cleaned up before pushing.
+ - Use tig to improve traceability of file changes (`apt-get install tig` for install)
