@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homeassistant-cfgmap
+data:
+  config_edits: |
+    http:
+      trusted_proxies:
+        - 10.69.0.0/16
+        - 192.168.0.0/16
+    use_x_forwarded_for: true

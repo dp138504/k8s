@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: homeassistant-service
+  name: homeassistant-service
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 8123
+  selector:
+    io.kompose.service: homeassistant-service
+  type: ClusterIP
+status:
+  loadBalancer: {}

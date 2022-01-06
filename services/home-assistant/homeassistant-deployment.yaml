@@ -12,7 +12,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: homeassistant
+      io.kompose.service: homeassistant-service
   strategy:
     type: Recreate
   template:
@@ -22,27 +22,25 @@ spec:
         kompose.version: 1.26.0 (40646f47)
       creationTimestamp: null
       labels:
-        io.kompose.service: homeassistant
+        io.kompose.service: homeassistant-service
     spec:
       containers:
         - image: ghcr.io/home-assistant/home-assistant:stable
           name: homeassistant
           resources: {}
-          securityContext:
-            privileged: true
+          #securityContext:
+          #  privileged: true
+          env:
+            - name: TZ
+              value: America/New_York
+          ports:
+            - containerPort: 8123
           volumeMounts:
             - mountPath: /config
-              name: homeassistant-claim0
-            - mountPath: /etc/localtime
-              name: homeassistant-claim1
-              readOnly: true
+              name: homeassistant-config-pvc
       restartPolicy: Always
       volumes:
-        - name: homeassistant-claim0
+        - name: homeassistant-config-pvc
           persistentVolumeClaim:
-            claimName: homeassistant-claim0
-        - name: homeassistant-claim1
-          persistentVolumeClaim:
-            claimName: homeassistant-claim1
-            readOnly: true
+            claimName: homeassistant-config-pvc
 status: {}
