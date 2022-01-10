@@ -35,8 +35,8 @@ Vagrant.configure("2") do |config|
      chsh -s /bin/zsh vagrant
      sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null 2>&1
      su - vagrant -c 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' > /dev/null 2>&1
-     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="flazz"/g' /root/.zshrc
-     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="flazz"/g' /home/vagrant/.zshrc
+     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' /root/.zshrc
+     sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="half-life"/g' /home/vagrant/.zshrc
 
      # Install kubectl
      echo "*** Install kubectl ***"
