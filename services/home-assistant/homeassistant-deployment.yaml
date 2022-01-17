@@ -24,6 +24,23 @@ spec:
       labels:
         io.kompose.service: homeassistant-service
     spec:
+      initContainers:
+        - name: copy-configs
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args: 
+            - >
+              if [[ -f /config/configuration.yaml ]]; then
+                echo '*** Configuration files exist. Exiting ***';
+              else
+                echo '*** Copying configs to /config ***';
+                cp /data/* /config/; echo '*** DONE ***';
+              fi;
+          volumeMounts:
+            - name: homeassistant-config-pvc
+              mountPath: /config
+            - name: homeassistant-cfgmap
+              mountPath: /data
       containers:
         - image: ghcr.io/home-assistant/home-assistant:stable
           name: homeassistant
@@ -38,21 +55,21 @@ spec:
           volumeMounts:
             - name: homeassistant-config-pvc
               mountPath: /config
-            - name: homeassistant-cfgmap
-              mountPath: /config/configuration.yaml
-              subPath: configuration.yaml
-            - name: homeassistant-cfgmap
-              mountPath: /config/groups.yaml
-              subPath: groups.yaml
-            - name: homeassistant-cfgmap
-              mountPath: /config/automations.yaml
-              subPath: automations.yaml
-            - name: homeassistant-cfgmap
-              mountPath: /config/scripts.yaml
-              subPath: scripts.yaml
-            - name: homeassistant-cfgmap
-              mountPath: /config/scenes.yaml
-              subPath: scenes.yaml
+#            - name: homeassistant-cfgmap
+#              mountPath: /config/configuration.yaml
+#              subPath: configuration.yaml
+#            - name: homeassistant-cfgmap
+#              mountPath: /config/groups.yaml
+#              subPath: groups.yaml
+#            - name: homeassistant-cfgmap
+#              mountPath: /config/automations.yaml
+#              subPath: automations.yaml
+#            - name: homeassistant-cfgmap
+#              mountPath: /config/scripts.yaml
+#              subPath: scripts.yaml
+#            - name: homeassistant-cfgmap
+#              mountPath: /config/scenes.yaml
+#              subPath: scenes.yaml
       restartPolicy: Always
       volumes:
         - name: homeassistant-config-pvc
