@@ -1,0 +1,224 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert -f .\docker-compose.yml
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: admin
+  name: admin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: admin
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\pitts\src\bin\kompose.exe convert -f .\docker-compose.yml
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/default: "true"
+        io.kompose.network/public: "true"
+        io.kompose.service: admin
+    spec:
+      containers:
+        - image: bitwarden/admin:latest
+          name: bitwarden-admin
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/core
+              name: admin-claim0
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: admin-claim1
+            - mountPath: /etc/bitwarden/logs
+              name: admin-claim2
+        - image: bitwarden/api:latest
+          name: bitwarden-api
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/core
+              name: api-claim0
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: api-claim1
+            - mountPath: /etc/bitwarden/logs
+              name: api-claim2
+        - image: bitwarden/attachments:latest
+          name: bitwarden-attachments
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/core/attachments
+              name: attachments-claim0
+        - image: bitwarden/events:latest
+          name: bitwarden-events
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: events-claim0
+            - mountPath: /etc/bitwarden/logs
+              name: events-claim1
+        - image: bitwarden/icons:latest
+          name: bitwarden-icons
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: icons-claim0
+            - mountPath: /etc/bitwarden/logs
+              name: icons-claim1
+        - image: bitwarden/identity:latest
+          name: bitwarden-identity
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/identity
+              name: identity-claim0
+            - mountPath: /etc/bitwarden/core
+              name: identity-claim1
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: identity-claim2
+            - mountPath: /etc/bitwarden/logs
+              name: identity-claim3
+        - image: bitwarden/mssql:latest
+          name: bitwarden-mssql
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/opt/mssql/data
+              name: mssql-claim0
+            - mountPath: /var/opt/mssql/log
+              name: mssql-claim1
+            - mountPath: /etc/bitwarden/mssql/backups
+              name: mssql-claim2
+        - image: bitwarden/nginx:latest
+          name: bitwarden-nginx
+          ports:
+            - containerPort: 8080
+            - containerPort: 8443
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/nginx
+              name: nginx-claim0
+            - mountPath: /etc/letsencrypt
+              name: nginx-claim1
+            - mountPath: /etc/ssl
+              name: nginx-claim2
+            - mountPath: /var/log/nginx
+              name: nginx-claim3
+        - image: bitwarden/notifications:latest
+          name: bitwarden-notifications
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: notifications-claim0
+            - mountPath: /etc/bitwarden/logs
+              name: notifications-claim1
+        - image: bitwarden/sso:latest
+          name: bitwarden-sso
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/identity
+              name: sso-claim0
+            - mountPath: /etc/bitwarden/core
+              name: sso-claim1
+            - mountPath: /etc/bitwarden/ca-certificates
+              name: sso-claim2
+            - mountPath: /etc/bitwarden/logs
+              name: sso-claim3
+        - image: bitwarden/web:latest
+          name: bitwarden-web
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/bitwarden/web
+              name: web-claim0
+      restartPolicy: Always
+      volumes:
+        - name: admin-claim0
+          persistentVolumeClaim:
+            claimName: admin-claim0
+        - name: admin-claim1
+          persistentVolumeClaim:
+            claimName: admin-claim1
+        - name: admin-claim2
+          persistentVolumeClaim:
+            claimName: admin-claim2
+        - name: api-claim0
+          persistentVolumeClaim:
+            claimName: api-claim0
+        - name: api-claim1
+          persistentVolumeClaim:
+            claimName: api-claim1
+        - name: api-claim2
+          persistentVolumeClaim:
+            claimName: api-claim2
+        - name: attachments-claim0
+          persistentVolumeClaim:
+            claimName: attachments-claim0
+        - name: events-claim0
+          persistentVolumeClaim:
+            claimName: events-claim0
+        - name: events-claim1
+          persistentVolumeClaim:
+            claimName: events-claim1
+        - name: icons-claim0
+          persistentVolumeClaim:
+            claimName: icons-claim0
+        - name: icons-claim1
+          persistentVolumeClaim:
+            claimName: icons-claim1
+        - name: identity-claim0
+          persistentVolumeClaim:
+            claimName: identity-claim0
+        - name: identity-claim1
+          persistentVolumeClaim:
+            claimName: identity-claim1
+        - name: identity-claim2
+          persistentVolumeClaim:
+            claimName: identity-claim2
+        - name: identity-claim3
+          persistentVolumeClaim:
+            claimName: identity-claim3
+        - name: mssql-claim0
+          persistentVolumeClaim:
+            claimName: mssql-claim0
+        - name: mssql-claim1
+          persistentVolumeClaim:
+            claimName: mssql-claim1
+        - name: mssql-claim2
+          persistentVolumeClaim:
+            claimName: mssql-claim2
+        - name: nginx-claim0
+          persistentVolumeClaim:
+            claimName: nginx-claim0
+        - name: nginx-claim1
+          persistentVolumeClaim:
+            claimName: nginx-claim1
+        - name: nginx-claim2
+          persistentVolumeClaim:
+            claimName: nginx-claim2
+        - name: nginx-claim3
+          persistentVolumeClaim:
+            claimName: nginx-claim3
+        - name: notifications-claim0
+          persistentVolumeClaim:
+            claimName: notifications-claim0
+        - name: notifications-claim1
+          persistentVolumeClaim:
+            claimName: notifications-claim1
+        - name: sso-claim0
+          persistentVolumeClaim:
+            claimName: sso-claim0
+        - name: sso-claim1
+          persistentVolumeClaim:
+            claimName: sso-claim1
+        - name: sso-claim2
+          persistentVolumeClaim:
+            claimName: sso-claim2
+        - name: sso-claim3
+          persistentVolumeClaim:
+            claimName: sso-claim3
+        - name: web-claim0
+          persistentVolumeClaim:
+            claimName: web-claim0
+status: {}
