@@ -3,9 +3,47 @@ kind: ConfigMap
 metadata:
   name: homeassistant-cfgmap
 data:
-  config_edits: |
+#  append_config_settings.sh: |
+#    cat config_update >> /config/configuration.yaml
+#  config_update: |
+#    http:
+#      trusted_proxies:
+#        - 10.69.0.0/16
+#        - 192.168.0.0/16
+#    use_x_forwarded_for: true
+#  test.sh: | 
+#    #!/bin/bash
+#    touch /config/configuration.yaml
+#    echo 'http:' >> /config/configuration.yaml
+#    echo '  trusted_proxies:' >> /config/configuration.yaml
+#    echo '    - 10.69.0.0/16' >> /config/configuration.yaml
+#    echo '    - 192.168.0.0/16' >> /config/configuration.yaml
+#    echo '  use_x_forwarded_for: true' >> /config/configuration.yaml
+  configuration.yaml: | 
+    --- 
+    # Configure a default setup of Home Assistant (frontend, api, etc)
+    default_config:
+
+    # Text to speech
+    tts:
+    - platform: google_translate
+
+    group: !include groups.yaml
+    automation: !include automations.yaml
+    script: !include scripts.yaml
+    scene: !include scenes.yaml
+
     http:
       trusted_proxies:
         - 10.69.0.0/16
         - 192.168.0.0/16
-    use_x_forwarded_for: true
+      use_x_forwarded_for: true
+  groups.yaml: | 
+    ---
+  automations.yaml: | 
+    ---
+  scripts.yaml: |
+    ---
+  scenes.yaml: | 
+    ---
+

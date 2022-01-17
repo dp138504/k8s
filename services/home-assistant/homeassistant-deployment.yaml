@@ -36,11 +36,30 @@ spec:
           ports:
             - containerPort: 8123
           volumeMounts:
-            - mountPath: /config
-              name: homeassistant-config-pvc
+            - name: homeassistant-config-pvc
+              mountPath: /config
+            - name: homeassistant-cfgmap
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
+            - name: homeassistant-cfgmap
+              mountPath: /config/groups.yaml
+              subPath: groups.yaml
+            - name: homeassistant-cfgmap
+              mountPath: /config/automations.yaml
+              subPath: automations.yaml
+            - name: homeassistant-cfgmap
+              mountPath: /config/scripts.yaml
+              subPath: scripts.yaml
+            - name: homeassistant-cfgmap
+              mountPath: /config/scenes.yaml
+              subPath: scenes.yaml
       restartPolicy: Always
       volumes:
         - name: homeassistant-config-pvc
           persistentVolumeClaim:
             claimName: homeassistant-config-pvc
+        - name: homeassistant-cfgmap
+          configMap:
+            name: homeassistant-cfgmap
+            defaultMode: 0777
 status: {}
