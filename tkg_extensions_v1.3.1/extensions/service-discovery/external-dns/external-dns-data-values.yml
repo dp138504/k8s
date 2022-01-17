@@ -18,4 +18,5 @@ externalDns:
     - --rfc2136-tsig-axfr
     - --source=service
     - --source=ingress
+    - --source=contour-httpproxy
     - --domain-filter=k8s.crossfits.dpitts.us #! zone where services are deployed
