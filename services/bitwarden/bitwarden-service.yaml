@@ -6,8 +6,8 @@ metadata:
     kompose.version: 1.26.1 (a9d05d509)
   creationTimestamp: null
   labels:
-    io.kompose.service: nginx
-  name: nginx
+    io.kompose.service: bitwarden-service
+  name: bitwarden-service
 spec:
   ports:
     - name: "80"
@@ -17,6 +17,6 @@ spec:
       port: 443
       targetPort: 8443
   selector:
-    io.kompose.service: nginx
+    io.kompose.service: bitwarden-service
 status:
   loadBalancer: {}

@@ -3,12 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: api-claim0
-  name: api-claim0
+    io.kompose.service: bitwarden-mssql-data-pvc
+  name: bitwarden-mssql-data-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 100Mi
+      storage: 5Gi
 status: {}

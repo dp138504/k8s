@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: inadyn-cfgmap
+data:
+  inadyn.conf: |
+    provider cloudflare:1 {
+      username = domainname.com
+      password = CloudflareAPIKey
+      hostname = { host1.domainname.com, host2.domainname.com, etc }
+      ttl = 1
+      proxied = true
+    }

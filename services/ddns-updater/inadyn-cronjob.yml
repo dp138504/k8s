@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ddns-update
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: ddns-updater
+            image: troglobit/inadyn:latest
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - inadyn --once --force --config=/etc/inadyn/inadyn.conf --foreground
+            volumeMounts:
+              - name: inadyn-cfgmap
+                mountPath: /etc/inadyn
+          volumes:
+            - name: inadyn-cfgmap
+              configMap: 
+                name: inadyn-cfgmap
+                defaultMode: 0600
+          restartPolicy: OnFailure
