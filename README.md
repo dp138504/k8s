@@ -7,6 +7,8 @@ This repo contains my personal Kubernetes projects hosted on my VMware Tanzu clu
    - calibre-web-comics - Comics library
  - home-assistant: from [linuxserver/docker-homeassistant](https://github.com/linuxserver/docker-homeassistant)
    > Note: Still need to migrate existing configuration over to k8s deployment.
+ - ddns-updater: from [troglobit/inadyn](https://hub.docker.com/r/troglobit/inadyn)
+   - Simple DDNS updater CronJob to ensure CloudFlare reflects my public IP.
 
 ## TODO
  
