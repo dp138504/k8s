@@ -5,9 +5,9 @@ metadata:
 data:
   inadyn.conf: |
     provider cloudflare:1 {
-      username = domainname.com
-      password = CloudflareAPIKey
-      hostname = { host1.domainname.com, host2.domainname.com, etc }
+      username = dpitts.us
+      password = CHANGE_ME
+      hostname = { bw.dpitts.us, ha.dpitts.us, dpitts.us }
       ttl = 1
       proxied = true
     }

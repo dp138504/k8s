@@ -1,3 +1,4 @@
 # ignore Vagrant internal files
 .vagrant
 sensitive.txt
+infrastructure/certificates/*.pem

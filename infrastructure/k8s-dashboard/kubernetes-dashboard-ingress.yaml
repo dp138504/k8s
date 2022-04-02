@@ -1,0 +1,20 @@
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+    labels:
+      k8s-app: kubernetes-dashboard
+    name: kubernetes-dashboard-ingress
+    namespace: kubernetes-dashboard
+spec:
+  virtualhost:
+    fqdn: dash.k8s.crossfits.dpitts.us
+    tls:
+      secretName: dash-k8s-tls
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: kubernetes-dashboard
+          protocol: tls
+          port: 443
