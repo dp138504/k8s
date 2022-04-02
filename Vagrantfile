@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
      # Install vsphere kubectl plugin
      echo "*** Install vsphere kubectl plugin ***"
      apt-get -qqq update > /dev/null 2>&1 && apt-get -qqq install -y unzip > /dev/null 2>&1
-     wget -q -O /tmp/kubectl-plugins.zip https://172.16.4.13/wcp/plugin/linux-amd64/vsphere-plugin.zip --no-check-certificate
+     wget -q -O /tmp/kubectl-plugins.zip https://172.16.4.10/wcp/plugin/linux-amd64/vsphere-plugin.zip --no-check-certificate
      unzip -qq /tmp/kubectl-plugins.zip -d /usr/local/
 
      # Update system
