@@ -10,8 +10,8 @@ metadata:
   name: calibre-web-books
 spec:
   ports:
-    - name: "80"
-      port: 80
+    - name: "443"
+      port: 443
       targetPort: 8083
   selector:
     io.kompose.service: calibre-web-books

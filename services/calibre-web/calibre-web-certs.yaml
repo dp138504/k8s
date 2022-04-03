@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: calibre-web-certs
+  namespace: calibre-web
+spec:
+  secretName: calibre-web-tls
+  issuerRef:
+    name: ca-issuer
+    kind: ClusterIssuer
+  dnsNames:
+  - books.k8s.crossfits.dpitts.us
+  - comics.k8s.crossfits.dpitts.us

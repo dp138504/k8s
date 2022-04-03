@@ -1,29 +1,39 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
 metadata:
-  name: calibre-web-ingress
-  labels:
-    app: calibre-web
-  annotations:
+    labels:
+      k8s-app: calibre-web
+    name: calibre-web-books-ingress
+    namespace: calibre-web
 spec:
-  rules:
-    - host: "books.k8s.crossfits.dpitts.us"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: calibre-web-books
-                port: 
-                  number: 80
-    - host: "comics.k8s.crossfits.dpitts.us"
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: calibre-web-comics
-                port:
-                  number: 80
+  virtualhost:
+    fqdn: books.k8s.crossfits.dpitts.us
+    tls:
+      secretName: calibre-web-tls
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: calibre-web-books
+          port: 443
+
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+    labels:
+      k8s-app: calibre-web
+    name: calibre-web-comics-ingress
+    namespace: calibre-web
+spec:
+  virtualhost:
+    fqdn: comics.k8s.crossfits.dpitts.us
+    tls:
+      secretName: calibre-web-tls
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: calibre-web-comics
+          port: 443
