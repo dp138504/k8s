@@ -10,9 +10,6 @@ metadata:
   name: calibre-web-comics
 spec:
   ports:
-#    - name: "80"
-#      port: 80
-#      targetPort: 8083
     - name: "443"
       port: 443
       targetPort: 8083
